@@ -1,0 +1,31 @@
+vote_app:
+  deployment:
+    image: devendradhoot/vote
+    tag: v1
+    name: voting-app-deploy
+    labels_name: voting-app-pod
+    port: 80
+    replicas: 2
+    labels_app: demo-voting-app
+  service:
+    name:  voting-app-service
+    type: ClusterIP
+    port: 80
+    targetPort: 80
+    nodePort: 30080
+result_app:
+  deployment:
+    image: devendradhoot/result
+    tag: v1
+    name: result-app-deploy
+    labels_name: result-app-pod
+    port: 80
+    replicas: 2
+    labels_app: demo-voting-app
+  service:
+    name:  voting-app-service
+    type: ClusterIP
+    port: 80
+    targetPort: 80
+    nodePort: 30080
+

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  {{ .Values.result_app.deployment.name }}
+  labels:
+    name:  {{ .Values.result_app.deployment.name }}
+    app: demo-voting-app
+spec:
+  replicas: {{ .Values.result_app.deployment.replicas }}
+  selector:
+    matchLabels:
+      name:  {{ .Values.result_app.deployment.labels_name }}
+      app: {{ .Values.result_app.deployment.labels_app }}
+    
+  template:
+    metadata:
+      name: {{ .Values.result_app.deployment.labels_name }}
+      labels:
+        name: {{ .Values.result_app.deployment.labels_name }}
+        app: demo-voting-app
+    spec:
+      containers:
+        - name: result-app
+          image: devendradhoot/result:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .Values.result_app.deployment.port }}

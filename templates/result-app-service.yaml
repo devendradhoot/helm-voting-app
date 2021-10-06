@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.result_app.service.name }}
+  labels:
+    name: {{ .Values.result_app.service.name }}
+    app: demo-voting-app
+spec:
+  type:  {{ .Values.result_app.service.type }}
+  ports:
+    - port: {{ .Values.result_app.service.port }}
+      targetPort: {{ .Values.result_app.service.targetPort }}
+  selector:
+    name: {{ .Values.result_app.deployment.labels_name }}
+    app: demo-voting-app

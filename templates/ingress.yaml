@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: voteapp
+  annotations:
+    ingress.kubernetes.io/proxy-body-size: 100M
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/app-root: "/"
+spec:
+  rules:
+  - host: vote.letsdevops.tk
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: voting-service
+          servicePort: 80
+
+  - host: result.letsdevops.tk
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: result-service
+          servicePort: 80
