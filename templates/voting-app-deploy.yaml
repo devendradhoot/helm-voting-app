@@ -23,6 +23,37 @@ spec:
       - name: vote
       containers:
       - name: voting-app
-        image: devendradhoot/vote:latest
+        image: {{ .Values.vote_app.deployment.image }}:{{ .Values.vote_app.deployment.tag }}
+        # Resource Start         
+        {{- if .Values.vote_app.deployment.resources }}
+        resources:
+          {{- if .Values.vote_app.deployment.resources.requests }}
+          requests:
+            memory: {{ .Values.vote_app.deployment.resources.requests.memory | default "50Mi" | quote }}
+            cpu: {{ .Values.vote_app.deployment.resources.requests.cpu | default "10m" | quote }}
+          {{- else}}
+          requests:
+            memory: "50Mi"
+            cpu: "10m"
+          {{- end}}
+          {{- if .Values.vote_app.deployment.resources.limits }}
+          limits:
+            memory: {{ .Values.vote_app.deployment.resources.limits.memory | default "1024Mi" | quote }}
+            cpu: {{ .Values.vote_app.deployment.resources.limits.cpu | default "1" | quote }}
+          {{- else}}  
+          limits:
+            memory: "1024Mi"
+            cpu: "1"
+          {{- end }}
+        {{- else }}
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "10m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1"          
+        {{- end}}
+        # Resource End                 
         ports:
         - containerPort: {{ .Values.vote_app.deployment.port }} 

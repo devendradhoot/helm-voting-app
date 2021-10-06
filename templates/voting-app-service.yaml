@@ -6,7 +6,10 @@ metadata:
     name: {{ .Values.vote_app.service.name }}
     app: demo-voting-app
 spec:
-  type:  {{ .Values.vote_app.service.type }}
+  # type:  {{ .Values.vote_app.service.type }}
+  {{- if eq .Values.vote_app.service.type "NodePort" }}
+  type: ClusterIP
+  {{- end }}
   ports:
     - port:  {{ .Values.vote_app.service.port }}
       targetPort: {{ .Values.vote_app.service.targetPort }}

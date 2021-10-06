@@ -22,4 +22,4 @@ spec:
       containers:
         - name: worker-app
           image: devendradhoot/worker:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: IfNotPresent         

@@ -7,12 +7,22 @@ vote_app:
     port: 80
     replicas: 2
     labels_app: demo-voting-app
+    resources: 
+      requests: 
+        memory: "5Mi"
+        cpu: "5m"
+      limits:
+        memory: "5Mi"
+        cpu: "5m"
   service:
     name:  voting-app-service
-    type: ClusterIP
+    #type: ClusterIP
+    type: NodePort
+
     port: 80
     targetPort: 80
     nodePort: 30080
+
 result_app:
   deployment:
     image: devendradhoot/result
