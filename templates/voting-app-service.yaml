@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.vote_app.service.name }}
   labels:
     name: {{ .Values.vote_app.service.name }}
-    app: demo-voting-app
+    app: {{ include "lib.name" . }}
 spec:
   # type:  {{ .Values.vote_app.service.type }}
   {{- if eq .Values.vote_app.service.type "NodePort" }}
@@ -15,4 +15,4 @@ spec:
       targetPort: {{ .Values.vote_app.service.targetPort }}
   selector:
     name:  {{ .Values.vote_app.deployment.labels_name }} 
-    app: demo-voting-app
+    app: {{ include "lib.name" . }}

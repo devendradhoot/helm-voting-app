@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.vote_app.deployment.name }}
   labels:
     name: {{ .Values.vote_app.deployment.name }} 
-    app: demo-voting-app
+    app: {{ include "lib.name" . }}
 spec:
   replicas: {{ .Values.vote_app.deployment.replicas }}
   selector:
@@ -17,7 +17,7 @@ spec:
       name: {{ .Values.vote_app.deployment.labels_name }}
       labels:
         name: {{ .Values.vote_app.deployment.labels_name }}
-        app: demo-voting-app
+        app: {{ include "lib.name" . }}
     spec:
       imagePullSecrets:
       - name: vote

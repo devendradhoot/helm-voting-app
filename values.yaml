@@ -4,6 +4,7 @@ vote_app:
     tag: v1
     name: voting-app-deploy
     labels_name: voting-app-pod
+    app: demo-voting-app
     port: 80
     replicas: 2
     labels_app: demo-voting-app

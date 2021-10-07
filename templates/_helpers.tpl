@@ -1,3 +1,13 @@
+
+{{- define "lib.name" -}}
+{{- if .Values.vote_app.deployment.app }}
+{{- printf "%s" .Values.vote_app.deployment.app -}}
+{{- else -}}
+{{ printf "demo" }}
+{{- end -}}
+{{- end -}}
+
+
 {{/*
 Expand the name of the chart.
 */}}

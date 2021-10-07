@@ -4,20 +4,20 @@ metadata:
   name: worker-app-deploy
   labels:
     name: worker-app-deploy
-    app: demo-voting-app
+    app: {{ include "lib.name" . }}
 spec:
   replicas: 1
   selector:
     matchLabels:
       name: worker-app-pod
-      app: demo-voting-app
+      app: {{ include "lib.name" . }}
     
   template:
     metadata:
       name: worker-app-pod
       labels:
         name: worker-app-pod
-        app: demo-voting-app
+        app: {{ include "lib.name" . }}
     spec:
       containers:
         - name: worker-app
